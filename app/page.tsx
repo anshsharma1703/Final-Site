@@ -71,20 +71,6 @@ export default function HomePage() {
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
       const scroll = totalScroll / windowHeight
       setScrollProgress(scroll)
-
-      const aboutUsSection = document.querySelector('[data-section="about-us"]')
-      if (aboutUsSection) {
-        const aboutUsTop = aboutUsSection.offsetTop
-        const currentScroll = window.scrollY
-
-        if (currentScroll < aboutUsTop - 200) {
-          // Before About Us - low opacity for more visible video
-          setVideoOpacity(0.15)
-        } else {
-          // At or after About Us - high opacity
-          setVideoOpacity(0.7)
-        }
-      }
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -101,16 +87,14 @@ export default function HomePage() {
       </div>
 
       <div className="fixed inset-0 w-full h-full z-0">
-        <video autoPlay muted loop playsInline preload="metadata" className="w-full h-full object-cover">
+        {/* 👇 opacity moved to video directly */}
+        <video autoPlay muted loop playsInline preload="metadata" className="w-full h-full object-cover opacity-60">
           <source src="/shelom.mp4" type="video/mp4" />
         </video>
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black transition-opacity duration-500"
-          style={{ opacity: videoOpacity }}
-        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20" />
       </div>
 
+      {/* -------- HERO -------- */}
       <section className="relative min-h-screen flex items-center justify-center py-20 pt-32 z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
           <div className="mb-12">
@@ -152,6 +136,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* -------- ABOUT US -------- */}
       <section className="py-24 relative z-10 bg-gray-800/60 neon-border-top" data-section="about-us">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -221,6 +206,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* -------- SERVICES -------- */}
       <section className="py-24 relative z-10 bg-gray-900/60">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -272,6 +258,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* -------- FOOTER -------- */}
       <footer className="bg-gray-900/80 neon-border-top py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
