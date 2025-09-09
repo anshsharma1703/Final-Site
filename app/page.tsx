@@ -7,7 +7,7 @@ import { Printer, Layers, Zap, ArrowRight, Star, Users, Award, Handshake, Shield
 
 export default function HomePage() {
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [videoOpacity, setVideoOpacity] = useState(0.25)
+  const [videoOpacity, setVideoOpacity] = useState(0.3) // Increased initial hero opacity
 
   function useAnimatedCounter(end: number, duration = 2000) {
     const [count, setCount] = useState(0)
@@ -78,9 +78,11 @@ export default function HomePage() {
         const currentScroll = window.scrollY
 
         if (currentScroll < aboutUsTop - 200) {
-          setVideoOpacity(0.25) // slightly more opacity
+          // Before About Us - slightly higher opacity
+          setVideoOpacity(0.3)
         } else {
-          setVideoOpacity(0.55) // slightly less opacity than before
+          // At or after About Us - higher overlay
+          setVideoOpacity(0.55)
         }
       }
     }
@@ -98,6 +100,7 @@ export default function HomePage() {
         />
       </div>
 
+      {/* Hero Video Section */}
       <div className="fixed inset-0 w-full h-full z-0">
         <video autoPlay muted loop playsInline preload="metadata" className="w-full h-full object-cover">
           <source src="/shelom.mp4" type="video/mp4" />
@@ -150,6 +153,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* About Us Section */}
       <section className="py-24 relative z-10 bg-gray-800/60 neon-border-top" data-section="about-us">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -219,6 +223,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Our Services Section */}
       <section className="py-24 relative z-10 bg-gray-900/60">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -270,6 +275,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="bg-gray-900/80 neon-border-top py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
