@@ -7,7 +7,7 @@ import { Printer, Layers, Zap, ArrowRight, Star, Users, Award, Handshake, Shield
 
 export default function HomePage() {
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [videoOpacity, setVideoOpacity] = useState(0.3) // Increased initial hero opacity
+  const [videoOpacity, setVideoOpacity] = useState(0.55) // default darker opacity
 
   function useAnimatedCounter(end: number, duration = 2000) {
     const [count, setCount] = useState(0)
@@ -77,12 +77,12 @@ export default function HomePage() {
         const aboutUsTop = aboutUsSection.offsetTop
         const currentScroll = window.scrollY
 
-        if (currentScroll < aboutUsTop - 200) {
-          // Before About Us - slightly higher opacity
-          setVideoOpacity(0.3)
-        } else {
-          // At or after About Us - higher overlay
+        if (currentScroll < aboutUsTop - 100) {
+          // Before About Us - keep it darker (fixed opacity)
           setVideoOpacity(0.55)
+        } else {
+          // After About Us - slightly more opacity
+          setVideoOpacity(0.7)
         }
       }
     }
